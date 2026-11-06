@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "screenshot-to-text"
+version = "0.1.0"
+description = "Local-first OCR for folders of screenshots: clean text files, a manifest CSV, hash-based dedupe, and an optional LLM tidy-up via any OpenAI-compatible endpoint (Ollama included)."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Asdale Dynamics, LLC" }]
+keywords = ["ocr", "screenshot", "screenshots", "local-first", "ollama", "manifest", "dedupe"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+]
+dependencies = ["pillow>=10.0"]
+
+[project.optional-dependencies]
+rapidocr = ["rapidocr-onnxruntime>=1.2"]
+tesseract = ["pytesseract>=0.3"]
+dev = ["pytest>=7.0"]
+
+[project.scripts]
+screenshot-to-text = "screenshot_to_text.cli:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
